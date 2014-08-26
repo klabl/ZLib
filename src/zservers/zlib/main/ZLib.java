@@ -1,114 +1,18 @@
 package zservers.zlib.main;
 
-import java.util.logging.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-public class ZLib implements ZMain {
+public class ZLib {
 
-	private static ZLib instance;
+    public static final ZLib INSTANCE = new ZLib();
 
-	private ZMain main;
-	private Logger logger;
+	public static final Logger LOG = LogManager.getLogger("ZServers.ZLib");
 
-	static {
+    public static final String VERSION = "0.1.0-alpha";
 
-		instance = new ZLib();
-	}
+	private ZLib() {
 
-	private ZLib() {}
-
-	static boolean setMainClass(ZMain main) {
-
-		if(instance.main != null) return false;
-
-		instance.main = main;
-		instance.logger = main.getLogger();
-
-        return true;
-	}
-
-	public static ZLib getInstance() {
-
-		return instance;
-	}
-
-	@Override
-	public void err(String... err) {
-
-		if(main == null) return;
-
-		main.err(err);
-	}
-
-	@Override
-	public void err(Throwable ex, String... err) {
-
-		if(main == null) return;
-
-		main.err(ex, err);
-	}
-
-    @Override
-    public void wrn(String... wrn) {
-
-        if(main == null) return;
-
-        main.wrn(wrn);
-    }
-
-    @Override
-    public void wrn(Throwable ex, String... wrn) {
-
-        if(main == null) return;
-
-        main.wrn(ex, wrn);
-    }
-
-    @Override
-	public void inf(String... inf) {
-
-		if(main == null) return;
-
-		main.inf(inf);
-	}
-
-	@Override
-	public void dbg(String... dbg) {
-
-		if(main == null) return;
-
-		main.dbg(dbg);
-	}
-
-    @Override
-    public void dbg(Throwable ex, String... dbg) {
-
-        if(main == null) return;
-
-        main.dbg(ex, dbg);
-    }
-
-    @Override
-	public int getLogLevel() {
-
-		if(main == null) return 0;
-		return main.getLogLevel();
-	}
-
-	@Override
-	public String getServerName() {
-
-		if(main == null) return "UNDEFINED";
-		return main.getServerName();
-	}
-
-	@Override
-	public Logger getLogger() {
-
-		return logger;
-	}
-
-    public String getVersion() {
-
-        return "v0.1 Alpha";
+        //TODO move the log4j2.xml file outside the jar file
     }
 }

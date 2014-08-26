@@ -14,7 +14,7 @@ public class Utilities {
 
 	public static String joinString(CharSequence[] array, String delimiter) {
 
-        if(array == null || delimiter == null) return "";
+        if(array == null || delimiter == null) throw new IllegalArgumentException("array and delimiter mustn't be null");
 
         if (array.length == 0) return "";
         if (array.length == 1) return array[0].toString();
